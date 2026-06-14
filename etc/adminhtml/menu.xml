@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @copyright Copyright (c) DotCommerce
+ * @license   Open Software License 3.0 (OSL-3.0)
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="DotCommerce_CronScheduler::scheduler"
+             title="Cron Scheduler"
+             module="DotCommerce_CronScheduler"
+             sortOrder="110"
+             parent="Magento_Backend::system"
+             resource="DotCommerce_CronScheduler::scheduler"/>
+        <add id="DotCommerce_CronScheduler::jobs"
+             title="Cron Jobs List"
+             module="DotCommerce_CronScheduler"
+             sortOrder="10"
+             parent="DotCommerce_CronScheduler::scheduler"
+             action="dc_cronscheduler/jobs/index"
+             resource="DotCommerce_CronScheduler::jobs"/>
+    </menu>
+</config>

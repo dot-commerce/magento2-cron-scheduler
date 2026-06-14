@@ -1,0 +1,181 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @copyright Copyright (c) DotCommerce
+ * @license   Open Software License 3.0 (OSL-3.0)
+ */
+-->
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">dc_cronscheduler_jobs_listing.dc_cronscheduler_jobs_listing_data_source</item>
+        </item>
+    </argument>
+    <settings>
+        <spinner>dc_cronscheduler_jobs_listing_columns</spinner>
+        <deps>
+            <dep>dc_cronscheduler_jobs_listing.dc_cronscheduler_jobs_listing_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="dc_cronscheduler_jobs_listing_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">entity_id</param>
+            </storageConfig>
+            <updateUrl path="mui/index/render"/>
+        </settings>
+        <aclResource>DotCommerce_CronScheduler::jobs</aclResource>
+        <dataProvider name="dc_cronscheduler_jobs_listing_data_source"
+                      class="DotCommerce\CronScheduler\Ui\DataProvider\JobDataProvider">
+            <settings>
+                <requestFieldName>entity_id</requestFieldName>
+                <primaryFieldName>entity_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <listingToolbar name="listing_top">
+        <settings>
+            <sticky>true</sticky>
+        </settings>
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <filters name="listing_filters">
+            <filterSelect name="status" provider="${ $.parentName }">
+                <settings>
+                    <options class="DotCommerce\CronScheduler\Model\Source\StatusOptions"/>
+                    <caption translate="true">Select Status...</caption>
+                    <label translate="true">Status</label>
+                    <dataScope>status</dataScope>
+                </settings>
+            </filterSelect>
+        </filters>
+        <massaction name="listing_massaction" component="Magento_Ui/js/grid/tree-massactions">
+            <action name="enable">
+                <settings>
+                    <confirm>
+                        <message translate="true">Are you sure you want to enable the selected jobs?</message>
+                        <title translate="true">Enable Jobs</title>
+                    </confirm>
+                    <url path="dc_cronscheduler/jobs/massEnable"/>
+                    <type>enable</type>
+                    <label translate="true">Enable</label>
+                </settings>
+            </action>
+            <action name="disable">
+                <settings>
+                    <confirm>
+                        <message translate="true">Are you sure you want to disable the selected jobs?</message>
+                        <title translate="true">Disable Jobs</title>
+                    </confirm>
+                    <url path="dc_cronscheduler/jobs/massDisable"/>
+                    <type>disable</type>
+                    <label translate="true">Disable</label>
+                </settings>
+            </action>
+            <action name="delete">
+                <settings>
+                    <confirm>
+                        <message translate="true">Are you sure you want to delete the selected jobs? Jobs still present in cron configuration will be re-created with default settings.</message>
+                        <title translate="true">Delete Jobs</title>
+                    </confirm>
+                    <url path="dc_cronscheduler/jobs/massDelete"/>
+                    <type>delete</type>
+                    <label translate="true">Delete</label>
+                </settings>
+            </action>
+        </massaction>
+        <paging name="listing_paging"/>
+    </listingToolbar>
+    <columns name="dc_cronscheduler_jobs_listing_columns">
+        <settings>
+            <editorConfig>
+                <param name="clientConfig" xsi:type="array">
+                    <item name="saveUrl" xsi:type="url" path="dc_cronscheduler/jobs/inlineEdit"/>
+                    <item name="validateBeforeSave" xsi:type="boolean">false</item>
+                </param>
+                <param name="indexField" xsi:type="string">entity_id</param>
+                <param name="enabled" xsi:type="boolean">true</param>
+                <param name="selectProvider" xsi:type="string">dc_cronscheduler_jobs_listing.dc_cronscheduler_jobs_listing.dc_cronscheduler_jobs_listing_columns.ids</param>
+            </editorConfig>
+            <childDefaults>
+                <param name="fieldAction" xsi:type="array">
+                    <item name="provider" xsi:type="string">dc_cronscheduler_jobs_listing.dc_cronscheduler_jobs_listing.dc_cronscheduler_jobs_listing_columns_editor</item>
+                    <item name="target" xsi:type="string">startEdit</item>
+                    <item name="params" xsi:type="array">
+                        <item name="0" xsi:type="string">${ $.$data.rowIndex }</item>
+                        <item name="1" xsi:type="boolean">true</item>
+                    </item>
+                </param>
+            </childDefaults>
+        </settings>
+        <selectionsColumn name="ids">
+            <settings>
+                <indexField>entity_id</indexField>
+            </settings>
+        </selectionsColumn>
+        <column name="entity_id">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">ID</label>
+                <sorting>asc</sorting>
+            </settings>
+        </column>
+        <column name="job_code">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Job Code</label>
+            </settings>
+        </column>
+        <column name="group_code">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Group</label>
+            </settings>
+        </column>
+        <column name="instance">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Instance</label>
+            </settings>
+        </column>
+        <column name="method">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Method</label>
+            </settings>
+        </column>
+        <column name="schedule">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Schedule</label>
+            </settings>
+        </column>
+        <column name="modified_schedule">
+            <settings>
+                <filter>text</filter>
+                <editor>
+                    <editorType>text</editorType>
+                </editor>
+                <label translate="true">Modified Schedule</label>
+            </settings>
+        </column>
+        <column name="status" component="Magento_Ui/js/grid/columns/select"
+                class="DotCommerce\CronScheduler\Ui\Component\Listing\Column\StatusEditor">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">DotCommerce\CronScheduler\Model\Source\StatusBadgeOptions</item>
+                <item name="config" xsi:type="array">
+                    <item name="bodyTmpl" xsi:type="string">ui/grid/cells/html</item>
+                </item>
+            </argument>
+            <settings>
+                <filter>select</filter>
+                <editor>
+                    <editorType>select</editorType>
+                </editor>
+                <dataType>select</dataType>
+                <label translate="true">Status</label>
+            </settings>
+        </column>
+    </columns>
+</listing>

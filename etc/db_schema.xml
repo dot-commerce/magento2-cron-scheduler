@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @copyright Copyright (c) DotCommerce
+ * @license   Open Software License 3.0 (OSL-3.0)
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="dc_cronscheduler_job" resource="default" engine="innodb"
+           comment="DotCommerce Cron Scheduler table of cron jobs">
+        <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Entity ID"/>
+        <column xsi:type="varchar" name="job_code" nullable="false" length="255" comment="Job Code"/>
+        <column xsi:type="varchar" name="group_code" nullable="false" length="255" comment="Cron Group"/>
+        <column xsi:type="text" name="instance" nullable="false" comment="Job Instance (class)"/>
+        <column xsi:type="varchar" name="method" nullable="false" length="255" comment="Job Method"/>
+        <column xsi:type="varchar" name="schedule" nullable="true" length="255" comment="Original Cron Expression"/>
+        <column xsi:type="varchar" name="modified_schedule" nullable="true" length="255" comment="Modified Cron Expression"/>
+        <column xsi:type="boolean" name="status" nullable="false" default="true" comment="Status"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+        <constraint xsi:type="unique" referenceId="DC_CRONSCHEDULER_JOB_JOB_CODE">
+            <column name="job_code"/>
+        </constraint>
+    </table>
+</schema>

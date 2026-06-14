@@ -1,0 +1,18 @@
+{
+    "dc_cronscheduler_job": {
+        "column": {
+            "entity_id": true,
+            "job_code": true,
+            "group_code": true,
+            "instance": true,
+            "method": true,
+            "schedule": true,
+            "modified_schedule": true,
+            "status": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "DC_CRONSCHEDULER_JOB_JOB_CODE": true
+        }
+    }
+}

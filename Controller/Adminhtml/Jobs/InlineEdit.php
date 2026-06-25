@@ -18,9 +18,6 @@ use Magento\Framework\Controller\Result\Json;
 use Magento\Framework\Controller\Result\JsonFactory;
 use Magento\Framework\Exception\LocalizedException;
 
-/**
- * Persists in-grid edits of the Modified Schedule and Status columns.
- */
 class InlineEdit extends Action implements HttpPostActionInterface
 {
     public const ADMIN_RESOURCE = 'DotCommerce_CronScheduler::jobs';

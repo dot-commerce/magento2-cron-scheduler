@@ -52,22 +52,12 @@ class JobActions extends Column
                 continue;
             }
 
-            $jobCode = $item[JobInterface::JOB_CODE] ?? $id;
-
             $item[$fieldName]['run'] = [
                 'href' => $this->urlBuilder->getUrl(
                     self::URL_PATH_RUN,
                     [JobInterface::ENTITY_ID => $id]
                 ),
                 'label' => __('Run Job'),
-                'post' => true,
-                'confirm' => [
-                    'title' => __('Run Job'),
-                    'message' => __(
-                        'Run "%1" now? It will execute immediately, regardless of its schedule.',
-                        $jobCode
-                    ),
-                ],
             ];
 
             $item[$fieldName]['schedule'] = [
@@ -76,14 +66,6 @@ class JobActions extends Column
                     [JobInterface::ENTITY_ID => $id]
                 ),
                 'label' => __('Schedule Now'),
-                'post' => true,
-                'confirm' => [
-                    'title' => __('Schedule Now'),
-                    'message' => __(
-                        'Queue "%1" to run on the next cron tick?',
-                        $jobCode
-                    ),
-                ],
             ];
         }
         unset($item);

@@ -39,7 +39,7 @@ class LastActivity extends Template
         return $this->getRawLastActivity() !== null;
     }
 
-    public function getHumanAge(): ?string
+    public function getLastActivityAge(): ?string
     {
         $age = $this->getAgeInSeconds();
 
@@ -64,15 +64,15 @@ class LastActivity extends Template
 
     private function getAgeInSeconds(): ?int
     {
-        $raw = $this->getRawLastActivity();
+        $rawAge = $this->getRawLastActivity();
 
-        if ($raw === null) {
+        if ($rawAge === null) {
             return null;
         }
 
-        $finishedTs = (new \DateTime($raw, new \DateTimeZone('UTC')))->getTimestamp();
+        $age = (new \DateTime($rawAge, new \DateTimeZone('UTC')))->getTimestamp();
 
-        return max(0, $this->dateTime->gmtTimestamp() - $finishedTs);
+        return max(0, $this->dateTime->gmtTimestamp() - $age);
     }
 
     private function getRawLastActivity(): ?string

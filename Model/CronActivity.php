@@ -20,10 +20,6 @@ class CronActivity
     ) {
     }
 
-    /**
-     * Latest successful heartbeat finish time as a UTC datetime string, or null
-     * if the heartbeat has never completed (e.g. cron has never run).
-     */
     public function getLastHeartbeatAt(): ?string
     {
         $connection = $this->scheduleResource->getConnection();

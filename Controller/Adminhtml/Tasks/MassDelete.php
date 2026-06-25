@@ -19,9 +19,6 @@ use Magento\Framework\Exception\LocalizedException;
 use Magento\Ui\Component\MassAction\Filter;
 use Psr\Log\LoggerInterface;
 
-/**
- * Deletes the selected cron_schedule history rows.
- */
 class MassDelete extends Action implements HttpPostActionInterface
 {
     public const ADMIN_RESOURCE = 'DotCommerce_CronScheduler::tasks';
@@ -58,7 +55,7 @@ class MassDelete extends Action implements HttpPostActionInterface
                 __('A total of %1 record(s) have been deleted.', count($ids))
             );
         } catch (LocalizedException $e) {
-            // Expected, user-facing conditions (e.g. nothing selected) - show, don't log.
+            // Expected, user-facing conditions (e.g. nothing selected)
             $this->messageManager->addErrorMessage($e->getMessage());
         } catch (\Exception $e) {
             $this->logger->error($e->getMessage(), ['exception' => $e]);

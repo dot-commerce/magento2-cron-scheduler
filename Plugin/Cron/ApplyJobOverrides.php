@@ -17,7 +17,7 @@ use Psr\Log\LoggerInterface;
 
 /**
  * Applies the admin's overrides to the live cron configuration:
- *  - a disabled job is removed entirely, so Magento never schedules it;
+ *  - a disabled job is removed entirely, so Magento never schedules it
  *  - a job with a modified schedule runs on the admin-chosen expression.
  *
  * Acts on {@see Config::getJobs}, the source of truth the cron scheduler reads.
@@ -74,9 +74,7 @@ class ApplyJobOverrides
     }
 
     /**
-     * Loads the jobs the admin has actually changed (disabled, or given a modified schedule),
-     * keyed by job code. The lookup is memoized for the process and degrades gracefully: if the
-     * table is not yet available (e.g. before setup:upgrade) the original config is left untouched.
+     * Loads the jobs the admin has actually changed (disabled, or given a modified schedule)
      *
      * @return array<string, JobInterface>
      */

@@ -20,7 +20,6 @@
                 type="DotCommerce\CronScheduler\Plugin\Cron\ApplyJobOverrides"/>
     </type>
 
-    <!-- Cron Tasks List grid: resolve the read-only cron_schedule collection by data source name. -->
     <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
         <arguments>
             <argument name="collections" xsi:type="array">

@@ -12,11 +12,6 @@ namespace DotCommerce\CronScheduler\Controller\Adminhtml\Jobs;
 use DotCommerce\CronScheduler\Api\Data\JobInterface;
 use DotCommerce\CronScheduler\Model\ResourceModel\Job\Collection;
 
-/**
- * Removes the registry rows for the selected jobs. Jobs still present in a
- * module's cron configuration are re-created with default settings on the
- * next synchronization run, so this effectively resets their overrides.
- */
 class MassDelete extends AbstractMassAction
 {
     protected function process(Collection $collection): void

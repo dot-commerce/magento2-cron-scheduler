@@ -10,8 +10,6 @@ declare(strict_types=1);
 namespace DotCommerce\CronScheduler\Api\Data;
 
 /**
- * A single managed cron job, mirrored from Magento's cron configuration.
- *
  * @api
  */
 interface JobInterface
@@ -25,9 +23,6 @@ interface JobInterface
     public const MODIFIED_SCHEDULE  = 'modified_schedule';
     public const STATUS             = 'status';
 
-    /**
-     * Values stored in the `status` column.
-     */
     public const STATUS_ENABLED     = 1;
     public const STATUS_DISABLED    = 0;
 

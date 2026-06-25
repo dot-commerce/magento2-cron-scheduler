@@ -13,15 +13,12 @@ use DotCommerce\CronScheduler\Api\Data\JobInterface;
 use DotCommerce\CronScheduler\Api\JobRepositoryInterface;
 use DotCommerce\CronScheduler\Model\JobScheduler;
 use Magento\Backend\App\Action;
-use Magento\Framework\App\Action\HttpPostActionInterface;
+use Magento\Framework\App\Action\HttpGetActionInterface;
 use Magento\Framework\Controller\Result\Redirect;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Psr\Log\LoggerInterface;
 
-/**
- * Queues a managed job for immediate run on the next cron tick
- */
-class Schedule extends Action implements HttpPostActionInterface
+class Schedule extends Action implements HttpGetActionInterface
 {
     public const ADMIN_RESOURCE = 'DotCommerce_CronScheduler::jobs';
 

@@ -13,15 +13,12 @@ use DotCommerce\CronScheduler\Api\Data\JobInterface;
 use DotCommerce\CronScheduler\Api\JobRepositoryInterface;
 use DotCommerce\CronScheduler\Model\JobRunner;
 use Magento\Backend\App\Action;
-use Magento\Framework\App\Action\HttpPostActionInterface;
+use Magento\Framework\App\Action\HttpGetActionInterface;
 use Magento\Framework\Controller\Result\Redirect;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Psr\Log\LoggerInterface;
 
-/**
- * Force-runs a single managed job now (per-row "Run Job" action on the jobs grid).
- */
-class Run extends Action implements HttpPostActionInterface
+class Run extends Action implements HttpGetActionInterface
 {
     public const ADMIN_RESOURCE = 'DotCommerce_CronScheduler::jobs';
 

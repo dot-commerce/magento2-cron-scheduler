@@ -46,7 +46,7 @@ abstract class AbstractMassAction extends Action implements HttpPostActionInterf
                 $this->process($collection);
             }
         } catch (LocalizedException $e) {
-            // Expected, user-facing conditions (e.g. nothing selected) — show, don't log.
+            // Expected, user-facing conditions (e.g. nothing selected)
             $this->messageManager->addErrorMessage($e->getMessage());
         } catch (\Exception $e) {
             $this->logger->error($e->getMessage(), ['exception' => $e]);

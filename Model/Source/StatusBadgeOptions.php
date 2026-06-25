@@ -13,9 +13,6 @@ use DotCommerce\CronScheduler\Api\Data\JobInterface;
 use Magento\Framework\Data\OptionSourceInterface;
 use Magento\Framework\Escaper;
 
-/**
- * Color-coded status labels used for rendering the grid Status column.
- */
 class StatusBadgeOptions implements OptionSourceInterface
 {
     public function __construct(

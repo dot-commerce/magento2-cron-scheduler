@@ -14,10 +14,6 @@ use Magento\Framework\View\Element\UiComponent\ContextInterface;
 use Magento\Framework\View\Element\UiComponentFactory;
 use Magento\Ui\Component\Listing\Columns\Column;
 
-/**
- * Status column whose cell renders the colour-coded badge (via the column's
- * `options`) while the inline editor dropdown uses plain text labels.
- */
 class StatusEditor extends Column
 {
     public function __construct(

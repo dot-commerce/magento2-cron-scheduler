@@ -12,10 +12,6 @@ namespace DotCommerce\CronScheduler\Cron;
 use DotCommerce\CronScheduler\Model\JobSynchronizer;
 use Psr\Log\LoggerInterface;
 
-/**
- * Heartbeat cron that keeps the managed-job registry in sync with the
- * live cron configuration. Scheduled every minute via etc/crontab.xml.
- */
 class SyncJobs
 {
     public function __construct(

@@ -12,9 +12,6 @@ namespace DotCommerce\CronScheduler\Model\Source;
 use DotCommerce\CronScheduler\Api\Data\JobInterface;
 use Magento\Framework\Data\OptionSourceInterface;
 
-/**
- * Plain status options used by the grid filter and the inline editor.
- */
 class StatusOptions implements OptionSourceInterface
 {
     public function toOptionArray(): array

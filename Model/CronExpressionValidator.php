@@ -14,12 +14,7 @@ use Magento\Framework\Exception\CronException;
 use Magento\Framework\Exception\LocalizedException;
 
 /**
- * Validates a cron expression before it is stored as a Modified Schedule.
- *
- * It first runs Magento's own parser (field count, structure, modulus, month/day
- * names) and then enforces real per-field numeric bounds - which Magento itself
- * does not, so values like "111" in the minutes field that would silently never
- * run are rejected here instead.
+ * Validates a cron expression before it is stored as a Modified Schedule
  */
 class CronExpressionValidator
 {

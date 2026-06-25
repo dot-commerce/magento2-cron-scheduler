@@ -1,0 +1,28 @@
+<?php
+/**
+ * @author    Mudassar Iqbal <miqbal@dotcommerce.co>
+ * @copyright Copyright (c) Dot Commerce
+ * @license   MIT
+ *
+ * @var \DotCommerce\CronScheduler\Block\Adminhtml\LastActivity $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+?>
+<div class="message message-notice dc-cron-activity">
+    <?php if ($block->hasActivity()): ?>
+        <span>
+            <?= $escaper->escapeHtml(
+                __(
+                    'Last Cron Activity: %1',
+                    $block->getHumanAge()
+                )
+            ) ?>
+        </span>
+    <?php else: ?>
+        <span>
+            <?= $escaper->escapeHtml(
+                __('No cron activity detected yet. Make sure Magento cron is configured and running.')
+            ) ?>
+        </span>
+    <?php endif; ?>
+</div>

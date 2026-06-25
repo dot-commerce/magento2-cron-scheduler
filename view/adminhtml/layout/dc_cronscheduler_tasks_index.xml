@@ -11,10 +11,10 @@
     <body>
         <referenceContainer name="content">
             <block class="DotCommerce\CronScheduler\Block\Adminhtml\LastActivity"
-                   name="dc_cronscheduler.jobs.last_activity"
+                   name="dc_cronscheduler.tasks.last_activity"
                    template="DotCommerce_CronScheduler::last_activity.phtml"
                    before="-"/>
-            <uiComponent name="dc_cronscheduler_jobs_listing"/>
+            <uiComponent name="dc_cronscheduler_tasks_listing"/>
         </referenceContainer>
     </body>
 </page>

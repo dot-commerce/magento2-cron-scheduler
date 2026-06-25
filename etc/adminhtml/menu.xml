@@ -22,5 +22,12 @@
              parent="DotCommerce_CronScheduler::scheduler"
              action="dc_cronscheduler/jobs/index"
              resource="DotCommerce_CronScheduler::jobs"/>
+        <add id="DotCommerce_CronScheduler::tasks"
+             title="Cron Tasks List"
+             module="DotCommerce_CronScheduler"
+             sortOrder="20"
+             parent="DotCommerce_CronScheduler::scheduler"
+             action="dc_cronscheduler/tasks/index"
+             resource="DotCommerce_CronScheduler::tasks"/>
     </menu>
 </config>

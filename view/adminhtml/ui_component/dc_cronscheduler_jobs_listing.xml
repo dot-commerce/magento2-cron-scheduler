@@ -178,5 +178,11 @@
                 <label translate="true">Status</label>
             </settings>
         </column>
+        <actionsColumn name="actions" class="DotCommerce\CronScheduler\Ui\Component\Listing\Column\JobActions">
+            <settings>
+                <indexField>entity_id</indexField>
+                <label translate="true">Action</label>
+            </settings>
+        </actionsColumn>
     </columns>
 </listing>

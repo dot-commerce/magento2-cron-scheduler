@@ -2,11 +2,54 @@
 
 Take control of Magento's cron jobs from the admin panel — view every scheduled
 job, reschedule or disable any of them without touching code, monitor execution
-history, and run or queue a job on demand.
+history, get notified when jobs fail, and run or queue a job on demand.
 
 `DotCommerce_CronScheduler` is a single, self‑contained module with no third‑party
 dependencies. It is built on Magento's native cron tables and service contracts,
 so it stays out of the way and upgrades cleanly.
+
+---
+
+## Requirements
+
+| Requirement | Version |
+| ----------- | ------- |
+| Magento     | 2.4.4 or higher (forward‑compatible through 2.4.9) |
+| PHP         | 8.1, 8.2, 8.3, 8.4, or 8.5 |
+
+---
+
+## Installation
+
+### Via Composer (recommended)
+
+```bash
+composer require dot-commerce/magento2-cron-scheduler
+bin/magento module:enable DotCommerce_CronScheduler
+bin/magento setup:upgrade
+bin/magento cache:flush
+```
+
+### Manual installation
+
+1. Copy the module into your Magento installation:
+
+   ```
+   app/code/DotCommerce/CronScheduler
+   ```
+
+2. Enable it and run setup:
+
+   ```bash
+   bin/magento module:enable DotCommerce_CronScheduler
+   bin/magento setup:upgrade
+   bin/magento cache:flush
+   ```
+
+> **Note:** This extension manages cron jobs but does not replace the system
+> cron that drives them. Make sure Magento cron is configured and running
+> (`bin/magento cron:run`, or a system crontab entry / scheduler add‑on). The
+> *Last Cron Activity* banner will tell you whether cron is alive.
 
 ---
 
@@ -48,55 +91,23 @@ A read‑only view of Magento's native `cron_schedule` execution history.
 An "is‑cron‑alive" banner shown above the grids. It reports how long ago cron
 last ran successfully, so a stalled cron is immediately obvious.
 
+### Email failure notifications
+Get notified by email the moment a cron job fails.
+
+- **Per‑job alerts** — when a managed job errors, an email is sent to the
+  configured recipients.
+- **Templated subject and body** — compose your own message using the
+  `{{job_code}}`, `{{executed_at}}`, and `{{message}}` variables.
+- **Anti‑spam throttle** — a configurable *Notifications Time Filter* sends at
+  most one alert per job within the chosen interval (set it to `0` to be notified
+  of every failure).
+- Configured under **Stores → Configuration → Dot Commerce → Cron Scheduler →
+  Email Notification** (off by default).
+
 ### Automatic synchronization
 A lightweight heartbeat cron (every minute) reconciles the job registry with
 Magento's configuration: new jobs are added, changed schedules are refreshed,
 and removed jobs are cleaned up (along with their orphaned schedule rows).
-
----
-
-## Requirements
-
-| Requirement | Version |
-| ----------- | ------- |
-| Magento     | 2.4.4 or higher (forward‑compatible through 2.4.9) |
-| PHP         | 8.1, 8.2, 8.3, 8.4, or 8.5 |
-
----
-
-## Installation
-
-### Via Composer (recommended)
-
-```bash
-composer require dot-commerce/magento2-cron-scheduler
-bin/magento module:enable DotCommerce_CronScheduler
-bin/magento setup:upgrade
-bin/magento setup:di:compile        # production mode only
-bin/magento cache:flush
-```
-
-### Manual installation
-
-1. Copy the module into your Magento installation:
-
-   ```
-   app/code/DotCommerce/CronScheduler
-   ```
-
-2. Enable it and run setup:
-
-   ```bash
-   bin/magento module:enable DotCommerce_CronScheduler
-   bin/magento setup:upgrade
-   bin/magento setup:di:compile      # production mode only
-   bin/magento cache:flush
-   ```
-
-> **Note:** This extension manages cron jobs but does not replace the system
-> cron that drives them. Make sure Magento cron is configured and running
-> (`bin/magento cron:run`, or a system crontab entry / scheduler add‑on). The
-> *Last Cron Activity* banner will tell you whether cron is alive.
 
 ---
 

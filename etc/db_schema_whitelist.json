@@ -14,5 +14,17 @@
             "PRIMARY": true,
             "DC_CRONSCHEDULER_JOB_JOB_CODE": true
         }
+    },
+    "dc_cronscheduler_failure_notification": {
+        "column": {
+            "entity_id": true,
+            "job_code": true,
+            "last_failure_at": true,
+            "last_notified_at": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "DC_CRONSCHEDULER_FAILURE_NOTIFICATION_JOB_CODE": true
+        }
     }
 }

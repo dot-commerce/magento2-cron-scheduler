@@ -15,6 +15,7 @@
                     <resource id="DotCommerce_CronScheduler::scheduler" title="Cron Scheduler" sortOrder="110">
                         <resource id="DotCommerce_CronScheduler::jobs" title="Cron Jobs List" sortOrder="10"/>
                         <resource id="DotCommerce_CronScheduler::tasks" title="Cron Tasks List" sortOrder="20"/>
+                        <resource id="DotCommerce_CronScheduler::config" title="Configuration" sortOrder="30"/>
                     </resource>
                 </resource>
             </resource>

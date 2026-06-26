@@ -26,4 +26,18 @@
             <column name="job_code"/>
         </constraint>
     </table>
+    <table name="dc_cronscheduler_failure_notification" resource="default" engine="innodb"
+           comment="DotCommerce Cron Scheduler failure-notification state">
+        <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Entity ID"/>
+        <column xsi:type="varchar" name="job_code" nullable="false" length="255" comment="Job Code"/>
+        <column xsi:type="datetime" name="last_failure_at" nullable="true" comment="Last observed failure time (UTC)"/>
+        <column xsi:type="datetime" name="last_notified_at" nullable="true" comment="Last notification sent time (UTC)"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+        <constraint xsi:type="unique" referenceId="DC_CRONSCHEDULER_FAILURE_NOTIFICATION_JOB_CODE">
+            <column name="job_code"/>
+        </constraint>
+    </table>
 </schema>

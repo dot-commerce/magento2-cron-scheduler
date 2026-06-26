@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author    Mudassar Iqbal <miqbal@dotcommerce.co>
+ * @copyright Copyright (c) Dot Commerce
+ * @license   MIT
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="dotcommerce" translate="label" sortOrder="400">
+            <label>Dot Commerce</label>
+        </tab>
+        <section id="dc_cronscheduler" translate="label" type="text" sortOrder="10"
+                 showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Cron Scheduler</label>
+            <tab>dotcommerce</tab>
+            <resource>DotCommerce_CronScheduler::config</resource>
+            <group id="email_notification" translate="label" type="text" sortOrder="10"
+                   showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Email Notification</label>
+                <field id="enabled" translate="label" type="select" sortOrder="10"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Send email notification on a task failure</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="sender_email" translate="label" type="select" sortOrder="20"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Email Sender</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Identity</source_model>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="send_to" translate="label comment" type="textarea" sortOrder="30"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Send notification to</label>
+                    <comment>Enter one email address per line.</comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="email_subject" translate="label comment" type="text" sortOrder="40"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Email Subject</label>
+                    <comment><![CDATA[Available variables:<br/>
+                    - {{job_code}}: the cron job code<br/>
+                    - {{executed_at}}: execution datetime<br/>
+                    - {{message}}: the error message]]></comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="email_content" translate="label comment" type="textarea" sortOrder="50"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Email Content</label>
+                    <comment><![CDATA[Available variables:<br/>
+                    - {{job_code}}: the cron job code<br/>
+                    - {{executed_at}}: execution datetime<br/>
+                    - {{message}}: the error message]]></comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="notification_interval" translate="label comment tooltip" type="text" sortOrder="60"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Notifications Time Filter</label>
+                    <comment>Value in minutes. Enter 0 to receive a notification for every new failure.</comment>
+                    <validate>validate-digits</validate>
+                    <tooltip><![CDATA[Prevents a frequently-failing job from "spamming" you. For a given job, no
+                    further failure email is sent until this many minutes have passed since the last one. Other jobs are
+                    unaffected. Example: a value of 60 means any single job emails you at most once per hour.]]></tooltip>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

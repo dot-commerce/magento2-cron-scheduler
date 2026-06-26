@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author    Mudassar Iqbal <miqbal@dotcommerce.co>
+ * @copyright Copyright (c) Dot Commerce
+ * @license   MIT
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <dc_cronscheduler>
+            <email_notification>
+                <enabled>0</enabled>
+                <email_subject>The cron task {{job_code}} failed</email_subject>
+                <email_content>The job {{job_code}} scheduled at {{executed_at}} failed with the following error message: {{message}}</email_content>
+                <notification_interval>0</notification_interval>
+            </email_notification>
+        </dc_cronscheduler>
+    </default>
+</config>
